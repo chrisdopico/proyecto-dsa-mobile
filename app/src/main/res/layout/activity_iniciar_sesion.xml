@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".IniciarSesionActivity">
+
+    <EditText
+        android:id="@+id/usuarioEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese usuario"
+        android:textSize="24dp"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/contraseñaEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese contraseña"
+        android:textSize="24dp"
+        android:layout_below="@+id/usuarioEditText"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/buttonIniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Iniciar Sesión"
+        android:layout_below="@+id/contraseñaEditText"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/buttonInvitado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Invitado"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/buttonIniciarSesion"/>
+</RelativeLayout>

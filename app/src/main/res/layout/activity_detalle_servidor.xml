@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".DetalleSensorActivity">
+
+    <TextView
+        android:id="@+id/tituloServidor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Servidor 1"
+        android:textSize="36dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/layoutEstado"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tituloServidor">
+
+        <TextView
+            android:id="@+id/textViewEstado"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Estado"
+            android:background="@color/purple_200"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:gravity="left"/>
+
+        <TextView
+            android:id="@+id/textViewValorEstado"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Trabajando"
+            android:textSize="24dp"
+            android:gravity="right" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutTemperatura"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/layoutEstado">
+        <TextView
+            android:id="@+id/textViewTemperatura"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Temperatura"
+            android:background="@color/purple_200"
+            android:textSize="24dp"
+            android:gravity="left"
+            android:textColor="@color/white"
+            android:layout_below="@+id/textViewEstado"/>
+
+        <TextView
+            android:id="@+id/textViewValorTemperatura"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="30ºC"
+            android:textSize="24dp"
+            android:gravity="right"
+            android:layout_below="@+id/textViewValorEstado"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonInterrumpir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Interrumpir"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/layoutTemperatura"/>
+
+    <Button
+        android:id="@+id/buttonVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Volver"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/buttonInterrumpir"/>
+
+</RelativeLayout>
