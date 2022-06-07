@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,22 +14,27 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListadoServidoresActivity extends AppCompatActivity {
+public class ListadoServidoresActivity extends AppCompatActivity implements Serializable {
 
     //Lista
     private ArrayList<String> data = new ArrayList<String>();
+    List<List<String>> servidoresLocales;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_servidores);
 
+        servidoresLocales = (List<List<String>>) getIntent().getSerializableExtra("servidoresLocales");
+        Toast.makeText(getBaseContext(), servidoresLocales.get(0).get(0).toString(), Toast.LENGTH_SHORT).show();
         ListView listView = (ListView) findViewById(R.id.listview);
         generateListContent();
         listView.setAdapter(new MyListAdapter(this, R.layout.list_item, data));
+
     }
 
     private void generateListContent() {
@@ -59,12 +65,18 @@ public class ListadoServidoresActivity extends AppCompatActivity {
                 convertView.setTag(viewHolder);
             }
             mainViewholder = (ViewHolder) convertView.getTag();
+
             mainViewholder.button.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Button was clicked for list item " + position, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.setClass(getBaseContext(), DetalleSensorActivity.class);
+                    startActivity(intent);
                 }
             });
+
+
             mainViewholder.title.setText(getItem(position));
 
             return convertView;
