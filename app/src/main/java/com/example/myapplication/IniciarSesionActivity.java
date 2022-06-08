@@ -26,9 +26,7 @@ import java.util.Scanner;
 
 public class IniciarSesionActivity extends AppCompatActivity implements Serializable{
 
-
     Button buttonIniciarSesion, buttonInvitado;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,6 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
         //Definición variables botones
         buttonIniciarSesion = findViewById(R.id.buttonIniciarSesion);
         buttonInvitado = findViewById(R.id.buttonInvitado);
-
 
 
         //Método que redirige a listado de servidores al dar click
@@ -58,17 +55,14 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
 
     }
 
-    //Clase Asíncrona que hace petición a la API de películas
+    //Clase Asíncrona que hace petición a la API de servidores
     public class  ServidorLocal extends AsyncTask<String, Void, List<List<String>>> implements Serializable {
-
 
         @Override
         protected List<List<String>> doInBackground(String... params){
             List<List<String>> servidoresLocales = new ArrayList<>();
 
             String stringSearchHTTP = "http://192.168.100.132:9003/servidores-locales";
-
-
             String contentAsString = "";
             HttpURLConnection urlConnection = null;
 
@@ -89,8 +83,6 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
                 System.out.println(contentAsString);
                 JSONArray jsonArray =new JSONArray(contentAsString);
 
-
-
                 for (int i = 0; i < jsonArray.length(); i++) {
                     List<String> servidorLocal = new ArrayList<>();
                     JSONObject jsonObject =jsonArray.getJSONObject(i);
@@ -100,7 +92,6 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
                     servidorLocal.add(_id);
                     servidorLocal.add(estado);
                     servidoresLocales.add(servidorLocal);
-
                 }
 
             }catch (Exception e) {
@@ -121,5 +112,4 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
 
         }
     }
-
 }
