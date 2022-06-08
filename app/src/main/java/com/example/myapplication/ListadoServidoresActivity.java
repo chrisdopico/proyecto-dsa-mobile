@@ -21,7 +21,7 @@ import java.util.List;
 public class ListadoServidoresActivity extends AppCompatActivity implements Serializable {
 
     //Lista
-    private ArrayList<String> data = new ArrayList<String>();
+    private ArrayList<String> nombresServidoresLocales = new ArrayList<String>();
     List<List<String>> servidoresLocales;
 
     @Override
@@ -30,16 +30,16 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
         setContentView(R.layout.activity_listado_servidores);
 
         servidoresLocales = (List<List<String>>) getIntent().getSerializableExtra("servidoresLocales");
-        Toast.makeText(getBaseContext(), servidoresLocales.get(0).get(0).toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(), servidoresLocales.get(0).get(0).toString(), Toast.LENGTH_SHORT).show();
         ListView listView = (ListView) findViewById(R.id.listview);
         generateListContent();
-        listView.setAdapter(new MyListAdapter(this, R.layout.list_item, data));
+        listView.setAdapter(new MyListAdapter(this, R.layout.list_item, nombresServidoresLocales));
 
     }
 
     private void generateListContent() {
-        for(int i = 1; i < 11; i++) {
-            data.add("Servidor " + i);
+        for(int i = 0; i < servidoresLocales.size(); i++) {
+            nombresServidoresLocales.add(servidoresLocales.get(i).get(0));
         }
     }
 

@@ -44,7 +44,7 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
         //Método que redirige a listado de servidores al dar click
         buttonIniciarSesion.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                new ServidorLocal().execute();
             }
         });
 
