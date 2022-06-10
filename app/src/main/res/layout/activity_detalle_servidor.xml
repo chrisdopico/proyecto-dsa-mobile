@@ -11,7 +11,6 @@
         android:id="@+id/tituloServidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Servidor 1"
         android:textSize="36dp"
         android:textColor="@color/black"
         android:textAlignment="center"
@@ -41,7 +40,6 @@
             android:id="@+id/textViewValorEstado"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Trabajando"
             android:textSize="24dp"
             android:gravity="right" />
 
