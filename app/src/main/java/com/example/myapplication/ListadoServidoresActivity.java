@@ -109,7 +109,7 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
         @Override
         protected String doInBackground(String... params) {
             String temperaturaSensor="";
-            String stringSearchHTTP = "http://192.168.100.132:9003/servidores-locales/" + servidorSeleccionado + "/sensores";
+            String stringSearchHTTP = "http://192.168.1.64:9003/servidores-locales/" + servidorSeleccionado + "/sensores";
             String contentAsString = "";
             HttpURLConnection urlConnection = null;
 
