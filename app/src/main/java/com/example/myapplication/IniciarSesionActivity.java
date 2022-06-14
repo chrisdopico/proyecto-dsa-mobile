@@ -30,7 +30,10 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //aqui va el theme
+        //Con onCreate listo restauramos el theme de la app en lugar del launcher
+        //Thread.sleep(2000);
+        setTheme(R.style.Theme_MyApplication);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
 
