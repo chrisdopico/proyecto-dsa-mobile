@@ -30,6 +30,10 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Con onCreate listo restauramos el theme de la app en lugar del launcher
+        //Thread.sleep(2000);
+        setTheme(R.style.Theme_MyApplication);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
 
@@ -62,7 +66,7 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
         protected List<List<String>> doInBackground(String... params){
             List<List<String>> servidoresLocales = new ArrayList<>();
 
-            String stringSearchHTTP = "http://192.168.100.132:9003/servidores-locales";
+            String stringSearchHTTP = "http://192.168.1.64:9003/servidores-locales";
             String contentAsString = "";
             HttpURLConnection urlConnection = null;
 
