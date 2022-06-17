@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.myapplication.requests.DetalleServidor;
@@ -59,8 +60,8 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            servidorSeleccionado = nombresServidoresLocales.get(position);
-            estadoServidorSeleccionado = estadoservidoresLocales.get(position);
+            //servidorSeleccionado = nombresServidoresLocales.get(position);
+            //estadoServidorSeleccionado = estadoservidoresLocales.get(position);
 
             ViewHolder mainViewholder = null;
             if (convertView == null) {
@@ -77,8 +78,11 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
 
                 @Override
                 public void onClick(View v) {
-                    new DetalleServidor(servidorSeleccionado,estadoServidorSeleccionado,ListadoServidoresActivity.this).execute();
-
+                    servidorSeleccionado = nombresServidoresLocales.get(position);
+                    estadoServidorSeleccionado = estadoservidoresLocales.get(position);
+                    //Toast.makeText(getContext(), "Servidor" + servidorSeleccionado +" "+"position: "+position, Toast.LENGTH_SHORT).show();
+                    new DetalleServidor(servidorSeleccionado,estadoServidorSeleccionado,
+                            ListadoServidoresActivity.this).execute();
                 }
             });
 
