@@ -25,6 +25,7 @@ public class DetalleSensorActivity extends AppCompatActivity {
         //Recuperar servidorSeleccionado
         temperaturaServidor = getIntent().getStringExtra("temperaturaServidor");
         servidorSeleccionado = getIntent().getStringExtra("servidorSeleccionado");
+        Toast.makeText(getBaseContext(), servidorSeleccionado, Toast.LENGTH_SHORT).show();
         estadoServidor = getIntent().getStringExtra("estadoServidor");
 
 
@@ -44,6 +45,9 @@ public class DetalleSensorActivity extends AppCompatActivity {
         //Método que redirige a listado de servidores al dar click
         buttonVolver.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                //Intent intent = new Intent();
+                //intent.setClass(getBaseContext(),ListadoServidoresActivity.class);
+                //startActivity(intent);
                 DetalleSensorActivity.this.onBackPressed();
             }
         });
