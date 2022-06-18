@@ -29,11 +29,12 @@ public class  ServidorLocal extends AsyncTask<String, Void, List<List<String>>> 
             this.context = iniciarSesionActivity;
         }
 
+
         @Override
         protected List<List<String>> doInBackground(String... params){
             List<List<String>> servidoresLocales = new ArrayList<>();
 
-            String stringSearchHTTP = "http://192.168.100.132:9003/servidores-locales";
+            String stringSearchHTTP = "https://redsensors-servicio-consulta.eu-gb.cf.appdomain.cloud/servidores-locales";
             String contentAsString = "";
             HttpURLConnection urlConnection = null;
 

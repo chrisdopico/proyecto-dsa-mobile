@@ -29,6 +29,8 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
     List<List<String>> servidoresLocales;
     String servidorSeleccionado;
     String estadoServidorSeleccionado;
+    String mensajeToken;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,15 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
         setContentView(R.layout.activity_listado_servidores);
 
         servidoresLocales = (List<List<String>>) getIntent().getSerializableExtra("servidoresLocales");
+        try {
+            mensajeToken = getIntent().getStringExtra("mensajeToken");
+        }catch (Exception e){
+
+        }
         ListView listView = (ListView) findViewById(R.id.listview);
         generateListContent();
         listView.setAdapter(new MyListAdapter(this, R.layout.list_item, nombresServidoresLocales));
+        //Toast.makeText(getBaseContext(), mensajeToken, Toast.LENGTH_SHORT).show();
     }
 
     private void generateListContent() {
@@ -60,8 +68,6 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            //servidorSeleccionado = nombresServidoresLocales.get(position);
-            //estadoServidorSeleccionado = estadoservidoresLocales.get(position);
 
             ViewHolder mainViewholder = null;
             if (convertView == null) {

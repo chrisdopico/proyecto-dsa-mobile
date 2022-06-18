@@ -1,14 +1,15 @@
 package com.example.myapplication;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.session.SessionManager;
 
 public class DetalleSensorActivity extends AppCompatActivity {
 
@@ -21,13 +22,11 @@ public class DetalleSensorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_servidor);
 
-
         //Recuperar servidorSeleccionado
         temperaturaServidor = getIntent().getStringExtra("temperaturaServidor");
         servidorSeleccionado = getIntent().getStringExtra("servidorSeleccionado");
         Toast.makeText(getBaseContext(), servidorSeleccionado, Toast.LENGTH_SHORT).show();
         estadoServidor = getIntent().getStringExtra("estadoServidor");
-
 
         //Definición variables botones
         buttonInterrumpir = findViewById(R.id.buttonInterrumpir);
@@ -45,9 +44,6 @@ public class DetalleSensorActivity extends AppCompatActivity {
         //Método que redirige a listado de servidores al dar click
         buttonVolver.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                //Intent intent = new Intent();
-                //intent.setClass(getBaseContext(),ListadoServidoresActivity.class);
-                //startActivity(intent);
                 DetalleSensorActivity.this.onBackPressed();
             }
         });
