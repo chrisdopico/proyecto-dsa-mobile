@@ -36,8 +36,6 @@ public class Login extends AsyncTask<String, Void, String> implements Serializab
         this.statusCode = statusCode;
     }
 
-
-
     public Login(String userId, String password, IniciarSesionActivity iniciarSesionActivity){
         this.userId = userId;
         this.password = password;
@@ -68,8 +66,10 @@ public class Login extends AsyncTask<String, Void, String> implements Serializab
             urlConnection.setDoOutput(true);
 
             //JSON
-            jsonObject.put("usuario", userId);
-            jsonObject.put("contraseña", password);
+            //jsonObject.put("usuario", userId);
+            //jsonObject.put("contraseña", password);
+            jsonObject.put("usuario", "admin-0");
+            jsonObject.put("contraseña", "admin-0");
 
             //Enviar request
             OutputStream outputStream = urlConnection.getOutputStream();

@@ -28,7 +28,6 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
     private ArrayList<String> estadoservidoresLocales = new ArrayList<>();
     List<List<String>> servidoresLocales;
     String servidorSeleccionado;
-    String estadoServidorSeleccionado;
     String mensajeToken;
 
 
@@ -85,9 +84,8 @@ public class ListadoServidoresActivity extends AppCompatActivity implements Seri
                 @Override
                 public void onClick(View v) {
                     servidorSeleccionado = nombresServidoresLocales.get(position);
-                    estadoServidorSeleccionado = estadoservidoresLocales.get(position);
                     //Toast.makeText(getContext(), "Servidor" + servidorSeleccionado +" "+"position: "+position, Toast.LENGTH_SHORT).show();
-                    new DetalleServidor(servidorSeleccionado,estadoServidorSeleccionado,
+                    new DetalleServidor(servidorSeleccionado,
                             ListadoServidoresActivity.this).execute();
                 }
             });
