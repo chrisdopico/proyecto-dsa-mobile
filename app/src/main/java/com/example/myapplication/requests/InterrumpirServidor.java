@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.myapplication.IniciarSesionActivity;
+import com.example.myapplication.DetalleSensorActivity;
 import com.example.myapplication.session.SessionManager;
 
 import org.json.JSONObject;
@@ -18,15 +18,14 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-//Clase Asíncrona para inicio de sesión
-public class Login extends AsyncTask<String, Void, String> implements Serializable {
+public class InterrumpirServidor extends AsyncTask<String, Void, String> implements Serializable {
 
-
-    private String userId;
-    private String password;
-    private Context context;
-    private IniciarSesionActivity activity;
+    String servidorSeleccionado;
     private int statusCode;
+    String token = SessionManager.getToken();
+    String estadoServidor;
+    String mensaje;
+    Context context;
 
     public int getStatusCode() {
         return statusCode;
@@ -36,20 +35,18 @@ public class Login extends AsyncTask<String, Void, String> implements Serializab
         this.statusCode = statusCode;
     }
 
-    public Login(String userId, String password, IniciarSesionActivity iniciarSesionActivity){
-        this.userId = userId;
-        this.password = password;
-        this.context= iniciarSesionActivity;
-        this.activity = iniciarSesionActivity;
+    public InterrumpirServidor(String estadoServidor, String servidorSeleccionado, DetalleSensorActivity detalleSensorActivity){
+        this.estadoServidor=estadoServidor;
+        this.servidorSeleccionado = servidorSeleccionado;
+        this.context = detalleSensorActivity;
     }
 
     @Override
     protected String doInBackground(String... params) {
-        String stringSearchHTTP = "https://redsensors-servicio-consulta.eu-gb.cf.appdomain.cloud/token";
+        String stringSearchHTTP = "https://redsensors-servicio-consulta.eu-gb.cf.appdomain.cloud/servidores-locales/"+servidorSeleccionado+"/interrumpir";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         StringBuilder response = new StringBuilder();
-        String token = "";
         JSONObject jsonObject = new JSONObject();
         try {
             //crear conexión
@@ -62,13 +59,14 @@ public class Login extends AsyncTask<String, Void, String> implements Serializab
             //headers
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.setRequestProperty("Authorization", "Bearer "+token);
+
             urlConnection.setUseCaches(false);
             urlConnection.setDoOutput(true);
 
             //JSON
-            jsonObject.put("usuario", userId);
-            jsonObject.put("contraseña", password);
 
+            jsonObject.put("interrumpir", getEstadoInterrumpirServidor(estadoServidor));
 
             //Enviar request
             OutputStream outputStream = urlConnection.getOutputStream();
@@ -98,7 +96,7 @@ public class Login extends AsyncTask<String, Void, String> implements Serializab
                 response.append(line);
                 response.append('\r');
             }
-            token = new JSONObject(String.valueOf(response)).getString("token");
+            mensaje = new JSONObject(String.valueOf(response)).getString("mensaje");
             rd.close();
         }catch (Exception e) {
             e.printStackTrace();
@@ -107,19 +105,28 @@ public class Login extends AsyncTask<String, Void, String> implements Serializab
                 urlConnection.disconnect();
             }
         }
-        return token;
+        return mensaje;
     }
-
     @Override
-    protected void onPostExecute(String response) {
-        SessionManager.setToken(response);
-        SessionManager.setStatusCode(getStatusCode());
-        //Si las credenciales son correctas redirige a ListadoServidoresActivity
-        if(SessionManager.getStatusCode()==200){
-            new ServidorLocal(activity).execute();
+    protected void onPostExecute(String mensaje) {
+        if (getStatusCode()==200){
+            Toast.makeText(context.getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context, "Credenciales no pertenecen a ningún usuario", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Token no válido", Toast.LENGTH_SHORT).show();
         }
 
+
     }
+
+    public boolean getEstadoInterrumpirServidor(String estadoServidor){
+        boolean estadoInterrumpirServidor;
+        if(estadoServidor.equals("interrumpido")){
+            estadoInterrumpirServidor = false;
+        }else{
+            estadoInterrumpirServidor = true;
+        }
+
+        return estadoInterrumpirServidor;
+    }
+
 }
