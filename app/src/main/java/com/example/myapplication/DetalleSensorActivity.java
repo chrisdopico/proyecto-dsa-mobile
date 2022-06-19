@@ -9,11 +9,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.requests.InterrumpirServidor;
 import com.example.myapplication.session.SessionManager;
 
 public class DetalleSensorActivity extends AppCompatActivity {
 
-    Button buttonInterrumpir, buttonVolver;
+    public static Button buttonInterrumpir;
+    Button buttonVolver;
     String servidorSeleccionado, estadoServidor, temperaturaServidor;
     TextView tituloServidor, textViewValorEstado, textViewValorTemperatura;
 
@@ -41,10 +43,25 @@ public class DetalleSensorActivity extends AppCompatActivity {
         textViewValorEstado.setText(estadoServidor);
         textViewValorTemperatura.setText(temperaturaServidor);
 
+        //Ocultar botón interrumpir si se entra como invitado
+        if(IniciarSesionActivity.mostrarBotonInterrumpir==false){
+            buttonInterrumpir.setVisibility(View.GONE);
+        }
+
+
         //Método que redirige a listado de servidores al dar click
         buttonVolver.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 DetalleSensorActivity.this.onBackPressed();
+            }
+        });
+
+
+        //Método que interrumpe o activa el servidor
+        buttonInterrumpir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new InterrumpirServidor(estadoServidor, servidorSeleccionado, DetalleSensorActivity.this).execute();
             }
         });
     }
