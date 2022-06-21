@@ -26,10 +26,9 @@ public class DetalleServidor extends AsyncTask<String, Void, String> implements 
     String estadoServidorSeleccionado;
     Context context;
     private static final DecimalFormat df = new DecimalFormat("00.00");
-    public DetalleServidor(String servidorSeleccionado,String estadoServidorSeleccionado, ListadoServidoresActivity listadoServidoresActivity){
+    public DetalleServidor(String servidorSeleccionado, ListadoServidoresActivity listadoServidoresActivity){
         super();
         this.servidorSeleccionado = servidorSeleccionado;
-        this.estadoServidorSeleccionado = estadoServidorSeleccionado;
         this.context = listadoServidoresActivity;
     }
     @Override
@@ -55,6 +54,7 @@ public class DetalleServidor extends AsyncTask<String, Void, String> implements 
             contentAsString = new Scanner(in).useDelimiter("\\A").next();
             System.out.println(contentAsString);
             JSONArray jsonArray = new JSONObject(contentAsString).getJSONArray("sensores");
+            estadoServidorSeleccionado = new JSONObject(contentAsString).getJSONObject("estado").getString("estado");
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 String tipoSensor = jsonArray.getJSONObject(i).getString("type");

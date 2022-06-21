@@ -16,6 +16,7 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
 
     Button buttonIniciarSesion, buttonInvitado;
     EditText usuarioEditText, contraseñaEditText;
+    public static boolean mostrarBotonInterrumpir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
         //Método que redirige a listado de servidores al dar click
         buttonIniciarSesion.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                mostrarBotonInterrumpir = true;
                 new Login(usuarioEditText.getText().toString(), contraseñaEditText.getText().toString(), IniciarSesionActivity.this).execute();
 
             }
@@ -43,6 +45,7 @@ public class IniciarSesionActivity extends AppCompatActivity implements Serializ
         //Método que redirige a listado de servidores al dar click
         buttonInvitado.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                mostrarBotonInterrumpir = false;
                 new ServidorLocal(IniciarSesionActivity.this).execute();
             }
         });
