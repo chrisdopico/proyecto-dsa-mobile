@@ -34,6 +34,13 @@ public class DetalleSensorActivity extends AppCompatActivity {
         buttonInterrumpir = findViewById(R.id.buttonInterrumpir);
         buttonVolver = findViewById(R.id.buttonVolver);
 
+        //Mostrar texto en botón Interrumpir en :'Activar' o 'Interrumpir' según su estado
+        if(estadoServidor.equals("interrumpido")){
+            buttonInterrumpir.setText("Activar");
+        }else{
+            buttonInterrumpir.setText("Interrumpir");
+        }
+
         //EditText
         tituloServidor = findViewById(R.id.tituloServidor);
         textViewValorEstado = findViewById(R.id.textViewValorEstado);
