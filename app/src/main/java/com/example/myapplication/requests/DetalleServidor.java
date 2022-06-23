@@ -34,7 +34,7 @@ public class DetalleServidor extends AsyncTask<String, Void, String> implements 
     @Override
     protected String doInBackground(String... params) {
         String temperaturaSensor="";
-        String stringSearchHTTP = "https://redsensors-servicio-consulta.eu-gb.cf.appdomain.cloud/servidores-locales/" + servidorSeleccionado + "/sensores";
+        String stringSearchHTTP = "https://redsensors-servicio-consulta.pj87j18q4um.eu-gb.codeengine.appdomain.cloud/servidores-locales/" + servidorSeleccionado + "/sensores";
         String contentAsString = "";
         HttpURLConnection urlConnection = null;
 

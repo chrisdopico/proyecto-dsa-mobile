@@ -43,7 +43,7 @@ public class InterrumpirServidor extends AsyncTask<String, Void, String> impleme
 
     @Override
     protected String doInBackground(String... params) {
-        String stringSearchHTTP = "https://redsensors-servicio-consulta.eu-gb.cf.appdomain.cloud/servidores-locales/"+servidorSeleccionado+"/interrumpir";
+        String stringSearchHTTP = "https://redsensors-servicio-consulta.pj87j18q4um.eu-gb.codeengine.appdomain.cloud/servidores-locales/"+servidorSeleccionado+"/interrumpir";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         StringBuilder response = new StringBuilder();

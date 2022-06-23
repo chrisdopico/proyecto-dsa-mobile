@@ -34,7 +34,7 @@ public class  ServidorLocal extends AsyncTask<String, Void, List<List<String>>> 
         protected List<List<String>> doInBackground(String... params){
             List<List<String>> servidoresLocales = new ArrayList<>();
 
-            String stringSearchHTTP = "https://redsensors-servicio-consulta.eu-gb.cf.appdomain.cloud/servidores-locales";
+            String stringSearchHTTP = "https://redsensors-servicio-consulta.pj87j18q4um.eu-gb.codeengine.appdomain.cloud/servidores-locales";
             String contentAsString = "";
             HttpURLConnection urlConnection = null;
 

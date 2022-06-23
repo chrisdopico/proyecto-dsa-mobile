@@ -45,7 +45,7 @@ public class Login extends AsyncTask<String, Void, String> implements Serializab
 
     @Override
     protected String doInBackground(String... params) {
-        String stringSearchHTTP = "https://redsensors-servicio-consulta.eu-gb.cf.appdomain.cloud/token";
+        String stringSearchHTTP = "https://redsensors-servicio-consulta.pj87j18q4um.eu-gb.codeengine.appdomain.cloud/token";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         StringBuilder response = new StringBuilder();
