@@ -79,7 +79,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24dp"
-        android:text="Interrumpir"
         android:layout_marginTop="40dp"
         android:layout_below="@id/layoutTemperatura"/>
 
